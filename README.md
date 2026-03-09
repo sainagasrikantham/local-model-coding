@@ -19,9 +19,9 @@ Install it either via the terminal or download the executable [from here](https:
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-2) **Update your shell variable**
+2) **Update your shell variables**
 
-Put the following line in your `.zshrc` or `.bashrc` file on a Mac. 
+Put the following lines in your `.zshrc` or `.bashrc` file on a Mac. 
 
 ```sh
 export PATH="/Users/{your_user}/.local/bin:$PATH" # MacOS
@@ -60,7 +60,7 @@ ollama pull deepseek-coder:6.7b
 
 3) **Install the `Continue` Extension**
 
-Search for the "Continue" extension and install it. Read more about Continue [here](https://docs.continue.dev/ide-extensions/install).
+Search for the "Continue" extension in VS Code and install it. Read more about Continue [here](https://docs.continue.dev/ide-extensions/install).
 
 4) **Edit `Continue` configuration**
 
@@ -86,6 +86,8 @@ models:
 ```
 
 5) **Add a `.continueignore` file**
+
+If you don't want **Continue** to index everything, add the `.continueignore` file.
 
 ```bash
 node_modules
