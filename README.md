@@ -70,8 +70,14 @@ name: Local Config
 version: 1.0.0
 schema: v1
 
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+
 models:
-  - name: Qwen Chat
+  - name: Qwen Local Chat
     provider: ollama
     model: qwen2.5-coder:7b
     roles:
@@ -80,18 +86,23 @@ models:
       - apply
     contextLength: 8192
     systemMessage: |
-      You are a coding assistant working inside a code editor.
+      You are a coding assistant inside VS Code.
 
-      When modifying code, respond with a minimal unified diff unless the user explicitly asks for an explanation.
+      When editing code:
+        - Respond with a minimal unified diff.
+        - Do not output full files unless explicitly requested.
+        - Keep explanations short.
 
-      Keep responses concise and avoid repeating unchanged code.
+      When answering conceptual questions, respond normally.
     defaultCompletionOptions:
       temperature: 0.2
       topP: 0.9
       topK: 40
       maxTokens: 1024
+      stop:
+        - "</s>"
 
-  - name: DeepSeek Autocomplete
+  - name: DeepSeek Local Autocomplete
     provider: ollama
     model: deepseek-coder:6.7b
     roles:
@@ -101,7 +112,7 @@ models:
       temperature: 0.2
       maxTokens: 256
 
-  - name: Nomic Embed
+  - name: Nomic Local Embed
     provider: ollama
     model: nomic-embed-text:latest
     roles:
