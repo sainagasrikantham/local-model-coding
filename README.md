@@ -33,6 +33,7 @@ export OPENAI_MODEL=qwen2.5-coder:7b
 export OPENAI_API_KEY=ollama
 export OLLAMA_FLASH_ATTENTION=1
 export OLLAMA_CONTEXT_LENGTH=8192
+export OLLAMA_NUM_PARALLEL=2
 ```
 
 `Set` the values in your shell on Windows -- read how to do so [here](https://stackoverflow.com/questions/18701783/windows-equivalent-of-export).
@@ -68,16 +69,38 @@ Search for the "Continue" extension in VS Code and install it. Read more about C
 name: Local Config
 version: 1.0.0
 schema: v1
+
 models:
-  - name: Qwen2.5-Coder 7B
+  - name: Qwen Chat
     provider: ollama
     model: qwen2.5-coder:7b
     roles:
-      - autocomplete
       - chat
       - edit
       - apply
     contextLength: 8192
+    systemMessage: |
+      You are a coding assistant working inside a code editor.
+
+      When modifying code, respond with a minimal unified diff unless the user explicitly asks for an explanation.
+
+      Keep responses concise and avoid repeating unchanged code.
+    defaultCompletionOptions:
+      temperature: 0.2
+      topP: 0.9
+      topK: 40
+      maxTokens: 1024
+
+  - name: DeepSeek Autocomplete
+    provider: ollama
+    model: deepseek-coder:6.7b
+    roles:
+      - autocomplete
+    contextLength: 4096
+    defaultCompletionOptions:
+      temperature: 0.2
+      maxTokens: 256
+
   - name: Nomic Embed
     provider: ollama
     model: nomic-embed-text:latest
