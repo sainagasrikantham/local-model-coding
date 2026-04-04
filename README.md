@@ -155,7 +155,17 @@ qwen2.5-coder:7b           dae161e27b0e    4.7 GB    4 hours ago
 
 Lauch VS Code in your project repo and start vibe coding for free 🚀
 
-9) **Bonus: CLI based coding**
+# CLI based coding
+
+## Claude Code
+
+After the [launch of Gemma4](https://ai.google.dev/gemma/docs/integrations/ollama), I tried Claude Code again and it seems to work much better with [Gemma4 with Ollama](https://ollama.com/library/gemma4).
+
+```sh
+ollama launch claude --model gemma4
+```
+
+## Qwen
 
 Note: IME this doesn't work as well as the tab auto-complete, but if you want to give it a try, follow the steps below:
 
